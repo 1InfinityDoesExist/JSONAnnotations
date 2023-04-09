@@ -2,6 +2,9 @@ package com.jsonannotation.jsons.jsonCreator;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class JsonCreatorAnnotationBean implements Serializable {
 
 	/**
@@ -9,13 +12,17 @@ public class JsonCreatorAnnotationBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -2334837887963425378L;
 
-	private String id;
-	private String name;
-	private String school;
-	private String section;
 	private Major major;
-	private String responseCode;
-	private String responseText;
+	public String id;
+	public String name;
+
+	@JsonCreator
+	public JsonCreatorAnnotationBean(@JsonProperty("id") String id, @JsonProperty("theName") String name,
+			@JsonProperty("major_subject") Major major) {
+		this.id = id;
+		this.major = major;
+		this.name = name;
+	}
 
 	public String getId() {
 		return id;
@@ -33,44 +40,12 @@ public class JsonCreatorAnnotationBean implements Serializable {
 		this.name = name;
 	}
 
-	public String getSchool() {
-		return school;
-	}
-
-	public void setSchool(String school) {
-		this.school = school;
-	}
-
-	public String getSection() {
-		return section;
-	}
-
-	public void setSection(String section) {
-		this.section = section;
-	}
-
 	public Major getMajor() {
 		return major;
 	}
 
 	public void setMajor(Major major) {
 		this.major = major;
-	}
-
-	public String getResponseCode() {
-		return responseCode;
-	}
-
-	public void setResponseCode(String responseCode) {
-		this.responseCode = responseCode;
-	}
-
-	public String getResponseText() {
-		return responseText;
-	}
-
-	public void setResponseText(String responseText) {
-		this.responseText = responseText;
 	}
 
 }
